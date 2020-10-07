@@ -1,0 +1,198 @@
+/*因为本效果图采取1280的宽度，而Bootstrap里面 container 宽度最大为1170px，有可能会出现装不开的情况，因此我们需要手动改下container宽度*/
+@media screen and (min-width: 1280px){
+    .container {
+        width: 1280px;
+    }
+}
+body {
+    background-color: #f5f5f5;
+}
+.container {
+    background-color: #fff;
+}
+ul {
+    list-style: none;
+   /* 取消ul默认的边距*/
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #666;
+}
+a:hover {
+    text-decoration: none;
+}
+
+/*header*/
+
+/*每一列都有一个左右padding值，在这里我们只需要去掉左侧的padding值，让他顶到左边，因为效果图右侧之间是有距离的（但是不要改header里面的类名，这样就会把里面的所有样式都修改了）*/
+header {
+    padding-left: 0!important;
+}
+header .logo{
+    background-color: rgb(66,154,217);
+}
+header .logo img {
+    /*img 转换为块级  才能给 margin*/
+    display: block;
+    /*我们不让我们的大 logo 图片跟着父亲等比例缩放*/
+    max-width: 100%;
+    margin: 0 auto;
+}
+/*1.我们如果进入我们的超小屏幕下  logo里面的图片就隐藏起来（只隐藏图片不隐藏logo这个父盒子）*/
+/*2.我们事先准备好一个盒子  在logo里面，它平时是隐藏起来的，只有在超小屏幕下显示*/
+header .logo span {
+    /*span 是行内元素，转换为块级元素才能给大小*/
+    display: block;
+   /* 我们要给我们span一个高，因为我们图片在超小屏下不可见，logo是没有高度的，全靠图片撑起来的，所以重新指定高度*/
+    height: 50px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+}
+.nav {
+    /*我们也不知道有多高，所以就不用给高度，反正下面也没有盒子，撑开就好了*/
+    background-color: #eee;
+    border-bottom: 1px solid #ccc;
+}
+/*当我们进入我们的 小屏幕(<992px) 还有 超小屏幕的时候，我们nav里面里面的li 浮动起来，并且宽度为20%*/
+@media screen and (max-width: 991px){
+    .nav li {
+        float: left;
+        width: 20%;
+    }
+    /*当我们处于我们的小屏幕和超小屏幕下，让我们的article盒子和上面有个距离*/
+    article {
+        margin-top: 10px;
+    }
+}
+/*当我们进入 超小屏幕的时候 我们nav 里的文字会变成14px*/
+@media screen and (max-width: 767px){
+    .nav li a {
+        font-size: 14px;
+    }
+    /*当我们处于超小屏幕下，news 第一个li 宽度为100%   剩下的小li 各 50%*/
+    .news ul li:nth-child(1) {
+        /*如果没有效果，记得提升权重*/
+        width: 100%;
+    }
+    .news ul li {
+        width: 50%;
+    }
+    .publish h3 {
+        font-size: 14px;
+    }
+}
+.nav a {
+    /*因为a是行内元素，我们必须转换为块级元素，才能指定大小*/
+    display: block;
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    padding-left: 30px;
+}
+.nav a:hover {
+    background-color: #fff;
+    color: #333;
+}
+.nav a::before {
+    /*让图片和文字居中对齐，然后和文字之间有一个距离*/
+    vertical-align: middle;
+    padding-right: 5px;
+}
+/*新闻*/
+.news li {
+    float: left;
+    width: 25%;
+    /*做响应式布局呢，我们给固定高度就可以了，不用担心等比例缩放的问题，因为到了另一个设备它的显示模式就不同了*/
+    height: 128px;
+    margin-bottom: 10px;
+    /*我们想让每个小li之间都有一个空白缝隙，因为是百分比的，给margin会掉下来，所以我们就第一个小li一个padding-right的内边距，然后图片和a一样大就可以*/
+    padding-right: 10px;
+}
+/*这时左右箭头宽度也成了百分之百，和父盒子一样大了，我们就只让li下面的亲儿子成百分之百就可以了，左右箭头的a是news li的孙子，因为左右箭头在这之间还有个父亲.carousel div包裹着呢，所以是不变的-*/
+.news li>a {   /*只选择我们li的亲儿子*/
+    position: relative;
+    /*因为a是行内元素，要想指定宽高，必须转换为块级元素*/
+    display: block;
+    /* background-color: purple;*/
+    /*这样a设置和父亲一样大的时候，因为有一个padding值，所以不会铺满，留有距离*/
+    width: 100%;
+    height: 100%;
+}
+.news li:nth-child(1) {
+    width: 50%;
+    height: 266px;
+    /*background-color: pink;*/
+}
+/*把图片和父盒子修改的和我们的父亲一样高和宽*/
+.carousel,
+.carousel img {
+    width: 100%!important;
+    height: 266px!important;
+}
+.news li a img {
+    width: 100%;
+    height: 100%;
+}
+.news li a p,
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 41px;
+    color: #fff;
+    /*定位的盒子要给宽高*/
+    background-color: rgba(0,0,0,.5);
+   /* bootstrap 默认给我们 p 标签指定了一个 下外边距的，我们去掉就可以了*/
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+.carousel-caption {
+    padding: 0;
+    line-height: 41px;
+    font-size: 16px;
+}
+.news li:nth-child(1) a p {
+    font-size: 20px;
+    line-height: 41px;
+    padding: 0 10px;
+}
+.publish {
+    /*我给我们下面的发表模块指定的上边框，但是由于上面的盒子没有清除浮动，所以我的上边框线跑到最上面去了*/
+    border-top: 1px solid #ccc;
+}
+.pic {
+   /* 图片太靠上边了 我们可以使用多类名，再指定一个类名，来给一个paddingtop值就可以了*/
+    padding-top: 10px;
+}
+.pic img {
+    /*让我们的图片也跟着自适应缩放*/
+    width: 100%;
+}
+.publish .row {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+.banner img {
+    /*还是图片和我们的父亲一样大，自适应缩放*/
+    width: 100%;
+}
+.hot {
+   /* ！！！首先a是行内元素，我们必须转换为块级元素才能给大小*/
+    display: block;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    padding: 0 20px 20px;
+}
+.hot span {
+    border-radius: 0;
+    margin-bottom: 20px;
+}
+.hot p {
+    font-size: 12px;
+}

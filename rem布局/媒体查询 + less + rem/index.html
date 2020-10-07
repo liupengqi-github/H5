@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 1.技术选型-->
+<!--方案：我们采取单独制作移动页面方案-->
+<!--技术：布局采取 rem 适配布局（媒体查询 + less + rem）-->
+<!--设计图：本设计图采用750px 设计尺寸-->
+
+<!--2.搭建相关文件夹结构-->
+
+<!-- 3.设置视口标签以及引入移动端初始化样式-->
+
+<!--4.设置公共 common.less 文件-->
+<!--1.新建 common.less   设置好最常见的屏幕尺寸，利用媒体查询设置不同的html字体大小，因为除了首页其他页面也需要-->
+<!--2.我们关心的尺寸有 320px、360px、375px（iPhone6/7/8）、384px、400px（OPPO R11 Plus）、414px、424px、480px、540px、720px、750px-->
+<!--3.划分的份数我们定为15等份-->
+<!--4.因为我们PC端也可以打开我们苏宁移动端首页，我们默认html字体大小为 50px，主要这句话写到最上面-->
+
+
+<!--5.新建 index.less文件
+                                                    1.新建index.less 这里面写首页的样式
+                                                    2.将刚才设置好的common.less引入到index.less里面
+                                         语法如下：在 index.less 中导入 common.less文件   @import "common"
+                                                    3.生成index.css引入到 index.html里面，这样就不用引入 common.css了  -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable-scale=0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <!--顶部搜索框-->
+    <div class="search-content">
+        <!--用我们flex布局，左右盒子用rem写死，中间flex：1自适应宽度就可以了-->
+        <a href="#" class="classify"></a>
+        <div class="search">
+            <!--有了 input  就要用form表单包起来-->
+            <form action="">
+                <!-- 注意！注意！注意！  因为是搜索框，所以type类型一定是 search -->
+                <input type="search" value="这是用less技术做的">
+            </form>
+        </div>
+        <a href="#" class="login">登录</a>
+    </div>
+    <!-- banner 部分 -->
+    <div class="banner">
+        <img src="upload/banner.gif">
+    </div>
+    <!-- 广告 ad -->
+    <div class="ad">
+        <a href="#"><img src="upload/ad1.gif" alt=""></a>
+        <a href="#"><img src="upload/ad2.gif" alt=""></a>
+        <a href="#"><img src="upload/ad3.gif" alt=""></a>
+    </div>
+    <!-- nav -->
+    <nav>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="images/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+    </nav>
+</body>
+
+</html>

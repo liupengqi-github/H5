@@ -1,0 +1,132 @@
+/*首页样式*/
+
+body {
+    min-width: 320px;
+    /*flexible 是根据当前屏幕进行划分十等份的，不像媒体查询，最大就是750px，所以这里我们还要加上最大宽度 把它限定死*/
+    max-width: 750px;
+    /*flexible 给我们划分了10等份   所以是10 * 75 = 750px*/
+    width: 10rem;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-family: Arial, Helvetica;
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+    font-size: .333333rem;
+}
+
+
+/* 如果我们的屏幕超过了 750px 那么我们就按照750设计稿来走 不要让我们的页面超过750px （用媒体查询给它限定死）*/
+
+@media screen and (min-width: 750px) {
+    html {
+        /* 这里面flexible.js的权重更高，所以我们就要提高权重 */
+        font-size: 75px!important;
+    }
+}
+
+
+/* 顶部导航栏 */
+
+.search-content {
+    display: flex;
+    /* 如果我们这样写的话是有问题的，它在我们的电脑打开是一个通栏的高度也变大了，正是因为 flexible.js的处理把我目前浏览器的宽高也进行划分了
+    ， 不像以前用媒体查询一样，只写到750px    所以以我现在现在的浏览器打开是1536px 划分十等份就是153.6px width：10rem * 153.6px =1536px
+    得到的结果还是我本身浏览器的宽度*/
+    position: fixed;
+    top: 0;
+    /* 固定定位的盒子居中办法 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10rem;
+    height: 1.173333rem;
+    background-color: rgb(255, 192, 1);
+}
+
+.classify {
+    width: .586667rem;
+    height: .933333rem;
+    background: url(../images/classify.png) no-repeat;
+    background-size: .586667rem .933333rem;
+    /* 有了flex的盒子不会发生外边距合并的问题 */
+    margin: .146667rem .333333rem .133333rem;
+}
+
+.search {
+    flex: 1;
+}
+
+.search input {
+    height: .88rem;
+    width: 100%;
+    margin-top: .133333rem;
+    outline: none;
+    border: 0;
+    padding-left: .733333rem;
+    border-radius: .44rem;
+    font-size: .333333rem;
+    color: #666;
+    background-color: rgb(255, 242, 204);
+}
+
+.login {
+    width: 1rem;
+    height: .933333rem;
+    margin: .133333rem;
+    color: #fff;
+    text-align: center;
+    line-height: .933333rem;
+}
+
+
+/* banner */
+
+.banner {
+    width: 10rem;
+    height: 4.906667rem;
+}
+
+.banner img {
+    width: 100%;
+    height: 100%;
+}
+
+.ad {
+    display: flex;
+}
+
+.ad a {
+    flex: 1;
+}
+
+.ad img {
+    width: 100%;
+}
+
+
+/* nav */
+
+nav {
+    width: 10rem;
+}
+
+nav a {
+    float: left;
+    width: 2rem;
+    height: 1.866667rem;
+    text-align: center;
+}
+
+nav a img {
+    display: block;
+    width: 1.093333rem;
+    height: 1.093333rem;
+    margin: 0 0 .266667rem .4rem;
+}
+
+nav a span {
+    font-size: .333333rem;
+    color: #333;
+}

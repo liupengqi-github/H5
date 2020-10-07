@@ -1,0 +1,460 @@
+body {
+    max-width: 540px;
+    /*最小宽度我们一般都设为320px，因为现在手机分辨率最小是320都很少见了*/
+    min-width: 320px;
+    margin: 0 auto;
+    color: #000;
+    background: #f2f2f2;
+    /*不会出现水平滚动条*/
+    overflow-x: hidden;
+    /*清除移动端点击的底色效果*/
+    -webkit-tap-highlight-color: transparent;
+    font: 400 14px/1.5 Tahoma,"Lucida Grande",Verdana,"Microsoft Yahei",STXihei,hei;
+}
+@font-face {
+    font-family: 'icomoon';
+    src:  url('../fonts/icomoon.eot?x4yrb');
+    src:  url('../fonts/icomoon.eot?x4yrb#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?x4yrb') format('truetype'),
+    url('../fonts/icomoon.woff?x4yrb') format('woff'),
+    url('../fonts/icomoon.svg?x4yrb#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+img {
+    vertical-align: middle;
+}
+a {
+    text-decoration: none;
+    color: #222;
+}
+div {
+    box-sizing: border-box;
+}
+.search-index {
+    /*保证我们顶部搜索框层级最高*/
+    z-index: 999;
+    display: flex;
+    /*固定定位跟父级没有关系，它是以屏幕为准的，要给它重新加上最大宽度，最小宽度，并利用定位居中办法将它定到中间来*/
+    position: fixed;
+    top: 0;
+    /*定位的盒子居中办法*/
+    left: 50%;
+        /*兼容老版本浏览器*/
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    min-width: 320px;
+    max-width: 540px;
+    /*固定定位的盒子一定要给宽高啊*/
+    width: 100%;
+    height: 44px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.search {
+    position: relative;
+    flex: 1;
+    height: 28px;
+    /*行高等于高是让文字居中的，但是我们的高不是28px，有2px边框被算到里面了*/
+    line-height: 26px;
+    width: 477px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    margin: 7px 10px;
+    padding:  0 25px;
+    font-size: 12px;
+    color: #666;
+}
+.search::before {
+    /*绝对定位的盒子不占位置，可以在后面放内容*/
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: url("../img/sprite1.15.png") no-repeat 0 0;
+    background-size: 22px auto;
+}
+.user {
+    /*a是行内元素，指定宽高是没有效果的*/
+    width: 44px;
+    height: 44px;
+    font-size: 12px;
+    text-align: center;
+    color: #222;
+}
+.user::before {
+    /*伪元素必写属性*/
+    content: "";
+    /*伪元素是行内元素，要转换为行内快*/
+    display: block;
+    width: 22px;
+    height: 22px;
+    /*background: url("../img/sprite.png") no-repeat -58px -309px;
+    background-size: 104px auto;*/
+    background: url("../img/sprite1.15.png") no-repeat 0 -77px;
+    background-size: 22px 123px;
+    /*给下面指定一个负值，下面的文字就会上来了*/
+    margin: 4px auto -2px;
+}
+    /*goback*/
+.goBack {
+    display: none;
+    position: fixed;
+    bottom: 140px;
+    right: 20px;
+    background: url("../img/back.png") no-repeat;
+    width: 38px;
+    height: 38px;
+    /*背景图缩放*/
+    background-size: 38px 38px;
+}
+.focus {
+    /*溢出隐藏左右图片*/
+    overflow: hidden;
+    position: relative;
+    padding-top: 44px;
+}
+.focus ul {
+    /*我没高度，我里面的孩子还浮动了，所以就要给它清除浮动*/
+    overflow: hidden;
+    width: 500%;
+    /*再让我们ul向左走100%，让我们的第一张图片漏出来*/  /*让ul左边走屏幕的宽度*/
+    margin-left: -100%;
+}
+.focus ul li {
+    /*因为我们图片默认是父亲有多宽我就有多宽，所以ul设置500，我们的li一开始还没跟宽度，所以它也会是百分之500，所以我们就用移动端的百分比布局每个占20就可以了*/
+    float: left;
+    width: 20%;
+}
+.focus img {
+    /*因为上面的盒子是固定定位不占位置，所以图片上边的地方是被上面的盒子盖住了，我们用margin或者padding移下来就好了*/
+    width: 100%;
+}
+.focus ol {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    /*清除ol默认的外边距*/
+    margin: 0;
+}
+.focus ol li {
+    /*转换为行内块，这样就不用再浮动了*/
+    display: inline-block;
+    list-style: none;
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+    border-radius: 2px;
+    /*让我们的小圆点也有一个过渡效果*/
+    transition: all .3s;
+}
+.focus ol li.current {
+    width: 15px;
+}
+.local-nav {
+    display: flex;
+    border-radius: 8px;
+    height: 64px;
+    background-color: #fff;
+    margin: 3px 4px;
+}
+.local-nav li {
+    flex: 1;
+}
+.local-nav a {
+    /*每个盒子里的上下布局我们可以放两个span，一个放图片，一个放文字，记得要给它的父亲转换为flex，因为默认主轴是X轴，要想竖着排列，就要把主轴转换为y轴，然后再把侧轴x轴居中就可以了*/
+    display: flex;
+    flex-direction: column;
+    /*侧轴居中对齐，因为是单行*/
+    align-items: center;
+    font-size: 12px;
+}
+/*用属性选择器做更方便*/
+.local-nav li [class^=local-nav-icon]{
+    width: 40px;
+    height: 36px;
+    background: url("../img/sprite3.png") no-repeat 0 -7px;
+    background-size: 40px auto;
+    margin-top: 8px;
+
+}
+.local-nav li .local-nav-icon-icon2 {
+    background-position: 0 -47px;
+}
+.local-nav li .local-nav-icon-icon3 {
+    background-position: -1px -85px;
+}
+.local-nav li .local-nav-icon-icon4 {
+    background-position: 0 -127px;
+}
+.local-nav li .local-nav-icon-icon5 {
+    background-position: 1px -165px;
+}
+/*导航栏*/
+nav {
+    /*要想让大的nav盒子指定圆角属性，要先把子盒子溢出隐藏*/
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 4px 3px;
+}
+.nav-common {
+    display: flex;
+    height: 88px;
+    background-color: pink;
+}
+.nav-common:nth-child(1) {
+                    /*线性渐变*/
+    background: -webkit-linear-gradient(left, rgb(250,91,85), rgb(250,152,77));
+}
+.nav-common:nth-child(2) {
+    background: -webkit-linear-gradient(left, rgb(75,143,237), rgb(83,188,237));
+}
+.nav-common:nth-child(3) {
+    background: -webkit-linear-gradient(left, rgb(52,194,170), rgb(108,213,88));
+}
+.nav-common:nth-child(2) {
+    /*给我们中间的第二个div盒子指定一个上下margin值*/
+    margin: 3px 0;
+}
+.nav-items {
+    /*这样写是不冲突的*/
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    /*想要让文字居中还得用 text-align  line-height*/
+}
+.nav-items a {
+    flex: 1;
+    text-align: center;
+    /*盒子的一半*/
+    line-height: 44px;
+    color: #fff;
+    font-size: 14px;
+    /*文字阴影*/
+    text-shadow: 1px 1px rgba(0,0,0,.2);
+}
+.nav-items a:nth-child(1) {
+    border-bottom: 1px solid #fff;
+}
+.nav-items:nth-child(1) a {
+    /*取消第一个a的下边框*/
+    border: 0;
+    /*让图片底侧居中显示*/
+    background: url("../img/hotel.png") no-repeat bottom center;
+    /*三倍图做法*/
+    background-size: 121px auto;
+}
+.nav-common:nth-child(2) .nav-items:nth-child(1) a {
+    background: url("../img/plane.png") no-repeat bottom center;
+    background-size: 80px auto;
+}
+.nav-common:nth-child(3) .nav-items:nth-child(1) a {
+    background: url("../img/sun.png") no-repeat bottom center;
+    background-size: 94px auto;
+}
+    /*-n+2  就是选择前两个盒子*/
+.nav-items:nth-child(-n+2) {
+    /*我们有初始化样式  border-box 所以给了边框也不会掉下来*/
+    border-right: 1px solid #fff;
+}
+        /*侧导航栏*/
+.subnav-entry {
+    border-radius: 8px;
+    margin: 0 4px;
+    display: flex;
+    background-color: #fff;
+    flex-wrap: wrap;
+    padding: 5px 0;
+    box-shadow: 0 2px 2px rgba(0,0,0,.3);
+}
+.subnav-entry li {
+    height: 53px;
+    /*里面的子盒子可以写 % 相对于父级来说的（flex：20% 的话，一个是百分之二十，五个就是百分之百，所以一行只能放5个）*/
+    flex: 20%;
+}
+.subnav-entry li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.subnav-entry [class^=subnav-entry-icon] {
+    width: 28px;
+    height: 28px;
+    background: url("../img/sprite4.png") no-repeat -0 -2px;
+    background-size: 28px auto;
+    margin-top: 4px;
+}
+.subnav-entry .subnav-entry-icon-icon2 {
+    background-position: -1px -31px;
+}
+.subnav-entry .subnav-entry-icon-icon3 {
+    background-position: 0 -58px;
+}
+.subnav-entry .subnav-entry-icon-icon4 {
+    background-position: 0 -85px;
+}
+.subnav-entry .subnav-entry-icon-icon5 {
+    background-position: 0 -114px;
+}
+.subnav-entry .subnav-entry-icon-icon6 {
+    background-position: 0 -143px;
+}
+.subnav-entry .subnav-entry-icon-icon7 {
+    background-position: 0 -171px;
+}
+.subnav-entry .subnav-entry-icon-icon8 {
+    background-position: 0 -199px;
+}
+.subnav-entry .subnav-entry-icon-icon9 {
+    background-position: 0 -227px;
+}
+.subnav-entry .subnav-entry-icon-icon10 {
+    background-position: 0 -255px;
+}
+/*销售模块*/
+.sales-box {
+    border-top: 1px solid #bbb;
+    background-color: #fff;
+    margin: 4px;
+}
+.sales-hd {
+    position: relative;
+    height: 44px;
+    border-bottom: 1px solid #ccc;
+}
+.sales-hd h2 {
+    position: relative;
+    /*text-indent 属性规定文本块中首行文本的缩进*/
+    text-indent: -999px;
+    /*把文字缩进到页面之外，然后溢出隐藏就可以了*/
+    overflow: hidden;
+}
+.sales-hd h2::before {
+    /*因为是行内元素，我们要转换为块级元素*/
+    position: absolute;
+    top: 50%;
+    /*盒子Y轴居中办法*/
+    transform: translateY(-50%);
+    left: 8px;
+    content: "";
+    width: 79px;
+    height: 15px;
+    background: url("../img/sprite5.png") no-repeat 0 -19px;
+    background-size: 79px auto;
+}
+.sales-hd h2::after {
+    /*因为是行内元素，我们要转换为块级元素*/
+    position: absolute;
+    top: 50%;
+    /*盒子Y轴居中办法*/
+    transform: translateY(-50%);
+    left: 90px;
+    content: "";
+    width: 36px;
+    height: 15px;
+    background: url("../img/icon-gg.png") no-repeat;
+    background-size: 36px auto;
+}
+.more {
+    position: absolute;
+    top: 15px;
+    transform: translateY(-50%);
+    right: 8px;
+    border-radius: 15px;
+    background: -webkit-linear-gradient(left, rgb(255,79,103),rgb(255,107,198));
+    color: #fff;
+    padding: 3px 20px 3px 10px;
+}
+.more::after {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    content: "";
+    /*我们给一个上边框和右边框，然后顺时针旋转45度，这样三角形就做出来了*/
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+}
+.row {
+    display: flex;
+}
+.row a {
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+.row a:nth-child(1) {
+    /*给每行row的第一个a指定一个右边框*/
+    border-right: 1px solid #eee;
+}
+.sales-bd a img {
+    width: 100%;
+}
+/*底部*/
+.tool-box {
+    border-top: 1px solid #ccc;
+    margin: 10px 4px;
+}
+.tool-cn {
+    display: flex;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+.tool-cn a {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    padding: 5px 0;
+}
+.tool-cn a span {
+    font-family: 'icomoon';
+    flex: 1;
+}
+.tool-cn a span:nth-child(1) {
+    color: #333;
+}
+.tool-ver {
+    margin-top: 5px;
+}
+.tool-ver a {
+    position: relative;
+    font-family: 'icomoon';
+    color: #666;
+    font-size: 12px;
+}
+.two::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: -17px;
+    width: 11px;
+    height: 11px;
+    background: url("../img/sprite6.png") no-repeat 0 -160px;
+    background-size: 30px auto;
+    margin: 0 3px;
+}
+.tool-ver {
+    text-align: center;
+}
+.tool-ver span {
+    padding: 0 12px;
+}
+.tool-ver p {
+    line-height: 0;
+    color: #999;
+    font-size: 12px;
+}

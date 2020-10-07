@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--简洁高效的rem适配方案flexible.js  -->
+<!--·手机淘宝团队出的简洁高效 移动端适配库-->
+<!--·我们再也不需要在写不同屏幕的媒体查询，因为里面js做了处理-->
+<!--·它的原理是把当前设备划分为10等份，但是不同设备下，比例还是一致的-->
+<!--·我们要做的，就是确定好我们当前设备的html 文字大小就可以了-->
+<!--·比如当前设计稿是750px，那么我们只需要把html文字大小设置为 75px（750px / 10）就可以-->
+<!--·里面页面元素rem值：页面元素的px值 / 75-->
+<!--·剩余的，让flexible.js来去算   github地址：https://github.com/amfe/lib-flexible-->
+
+<!--1.技术选型-->
+<!--方案：我们采取单独制作移动页面方案-->
+<!--技术：布局采取rem适配布局2（flexible.js + rem）-->
+<!--设计图：本设计图采用750px设计尺寸-->
+
+<!--2.搭建相关文件夹结构-->
+
+<!--3.引入我们的视口标签还有js文件-->
+
+<!--4.body样式-->
+
+<!--5. VScode px 转换 rem 插件 cssrem-->
+<!--首先去扩展库里 安装  cssrem-->
+<!--我们要想更改html：font-size就要在在左下角的设置里面点进去，搜索 cssrem 更改里面数值就可以了-->
+
+<head>
+    <meta charset="UTF-8">
+    <!--    引入移动端需要的视口标签-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0 user-scalable=0">
+    <title>Title</title>
+    <!--    引入移动端初始化样式-->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!--    引入首页初始化样式-->
+    <link rel="stylesheet" href="css/index.css">
+    <!--    引入 flexible.js （主要帮助我们判断出现不同大小屏幕的时候自动划分十等份）-->
+    <script src="js/flexible.js"></script>
+    <!--当我们打开页面的时候，我的浏览器宽度是1536px，右键检查就会发现，html的font-size是453.6px，打开其他屏幕也是一样的，说明js文件引入成功-->
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="search-content">
+        <a href="#" class="classify"></a>
+        <div class="search">
+            <form action="">
+                <input type="search" placeholder="这是用flexible.js做的">
+            </form>
+        </div>
+        <a href="#" class="login">登录</a>
+    </div>
+    <!-- banner -->
+    <div class="banner">
+        <img src="upload/banner.gif" alt="">
+    </div>
+    <!-- 广告部分 -->
+    <div class="ad">
+        <a href="#"><img src="upload/ad1.gif" alt=""></a>
+        <a href="#"> <img src="upload/ad2.gif" alt=""></a>
+        <a href="#"> <img src="upload/ad3.gif" alt=""></a>
+    </div>
+    <!-- nav -->
+    <!-- 不要把 nav标签 和 div class=nav 弄混了 -->
+    <nav>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+        <a href="#">
+            <img src="upload/nav1.png" alt="">
+            <span>爆款手机</span>
+        </a>
+    </nav>
+</body>
+
+</html>

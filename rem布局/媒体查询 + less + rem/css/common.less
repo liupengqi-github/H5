@@ -1,0 +1,77 @@
+//取消 a 链接的下划线
+a {
+    text-decoration: none;
+}
+//设置常见的屏幕尺寸 修改里面的 html 文字大小 (媒体查询 从小到大写更简洁)
+// 如果你是在 PC端打开的  不论你尺寸多大，都是50px  小于等于750就安装移动端的来，但是这句话一定要写到最上面，代码是按照层叠性执行的，放到下面回把上面的层叠掉
+html {
+    font-size: 50px;
+}
+// 我们此次定义的划分的份数 为15 所以我们就要定义一个变量，以后要想划分10份、或20份直接修改变量就可以了
+@number: 15;
+ //320 屏幕的
+@media screen and (min-width: 320px) {
+    html {
+        font-size: 320px / @number;
+    }
+}
+//360 屏幕的
+@media screen and (min-width: 360px) {
+    html {
+        font-size: 360px / @number;
+    }
+}
+//375  iPhone 6/7/8 的
+@media screen and (min-width: 375px) {
+    html {
+        font-size: 375px / @number;
+    }
+} 
+// 384 屏幕的
+@media screen and (min-width: 384px){
+    html {
+        font-size: 384px / @number;
+    }
+}
+//400 屏幕的  OPPO R11 Plus
+@media screen and (min-width: 400px) {
+    html {
+        font-size: 400px / @number;
+    }
+}
+//414 屏幕的
+@media screen and (min-width: 414px) {
+    html {
+        font-size: 414px / @number;
+    }
+}
+//424 屏幕的
+@media screen and (min-width: 421px) {
+    html {
+        font-size: 424px / @number;
+    }
+}
+//480 屏幕的 
+@media screen and (min-width: 480px) {
+    html {
+        font-size: 480px / @number;
+    }
+}
+//540 屏幕的
+@media screen and (min-width: 540px) {
+    html {
+        font-size: 540px / @number;
+    }
+}
+//720 屏幕的
+@media screen and (min-width: 720px) {
+    html {
+        font-size: 720px / @number;
+    }
+}
+//750 屏幕的
+@media screen and (min-width: 750px) {
+    html {
+        font-size: 750px / @number;
+    }
+} 

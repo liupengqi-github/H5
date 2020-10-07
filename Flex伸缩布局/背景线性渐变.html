@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+                                                                       <!--背景线性渐变-->
+                                            <!--语法 background：-webkit-linear-gradient（起始方向，颜色1，颜色2）；-->
+                                                        <!--背景渐变必须添加浏览器私有前缀
+                                                        起始方向可以是：方位名词 或者 度数 如果省略默认就是 top-->
+    <style>
+        div {
+            width: 600px;
+            height: 200px;
+           /* 背景渐变的属性必须加上浏览器私有前缀，现在浏览器支持情况不是很好*/
+            /*background: -webkit-linear-gradient(left, red , green);*/
+
+            /*如果不写方位名词，默认的就是从上面往下渐变*/
+            /*background: -webkit-linear-gradient(red,green);*/
+
+            /*从左上角到开始渐变*/
+            background: -webkit-linear-gradient(top left, red , green );
+        }
+    </style>
+</head>
+<body>
+<div></div>
+</body>
+</html>
